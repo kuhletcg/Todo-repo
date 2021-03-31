@@ -1,4 +1,4 @@
-import { ADD_FOOD, DELETE_FOOD } from "../actions/types";
+import { ADD_FOOD, DELETE_FOOD } from "../actionTypes/food";
 
 const initialState = {
   foodList: [],
@@ -9,10 +9,13 @@ const foodReducer = (state = initialState, action) => {
     case ADD_FOOD:
       return {
         ...state,
-        foodList: state.foodList.concat({
-          key: Math.random(),
-          name: action.payload,
-        }),
+        foodList: [
+          ...state.foodList,
+          {
+            key: Math.random(),
+            name: action.payload,
+          },
+        ],
       };
     case DELETE_FOOD:
       return {
