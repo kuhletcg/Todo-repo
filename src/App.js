@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { addNumber, addFood, deleteFood } from "./redux/actions/food";
 
 function App() {
-  const foodList = useSelector((state) => state.foodList.foodList);
+  const foodList = useSelector((state) => state.food.foodList);
+  console.log("foodlist", foodList);
   const dispatch = useDispatch();
   const [food, setFood] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addFood(food));
@@ -15,17 +17,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Dell</h1>
-      <button onClick={() => dispatch(addFood())}>addFood</button>
-      <button onClick={() => dispatch(deleteFood())}>DeleteFood</button>
+      <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          onChange={(e) => setFood(e.target.value)}
-          value={food}
-        />
-        <button type="submit">Add</button>
+        <div>
+          <input
+            type="todoapp"
+            onChange={(e) => setFood(e.target.value)}
+            placeholder="todoapp"
+            value={food}
+          />
+          <input type="button" value="Submit" onClick={handleSubmit} />
+        </div>
       </form>
+      {foodList &&
+        foodList.map((food) => {
+          return <div key={food.key}>{food.name}</div>;
+        })}
     </div>
   );
 }
