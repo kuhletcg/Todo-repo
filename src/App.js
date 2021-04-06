@@ -15,6 +15,10 @@ function App() {
     setFood("");
   };
 
+  const handleDelete = (key) => {
+    return foodList.filter((list) => list.key !== key);
+  };
+
   return (
     <div className="App">
       <h1>Todo App</h1>
@@ -23,15 +27,27 @@ function App() {
           <input
             type="todoapp"
             onChange={(e) => setFood(e.target.value)}
-            placeholder="todoapp"
+            placeholder=""
             value={food}
           />
           <input type="button" value="Submit" onClick={handleSubmit} />
+          {/* <input type="button" value="Delete" onClick={handleDelete} /> */}
         </div>
       </form>
       {foodList &&
         foodList.map((food) => {
-          return <div key={food.key}>{food.name}</div>;
+          return (
+            <div key={food.key}>
+              <h2>
+                <button
+                  onClick={() => dispatch(deleteFood(handleDelete(food.key)))}
+                >
+                  delete
+                </button>
+              </h2>
+              <h1>{food.name}</h1>
+            </div>
+          );
         })}
     </div>
   );
