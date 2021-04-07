@@ -1,9 +1,14 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  color: black;
 }
 h1 {
-  color: white;
+  color: black;
+  font-size: 70px;
+}
+button {
+  color: black;
   font-size: 70px;
 }
 body {
@@ -16,15 +21,15 @@ body {
 
 input {
   background: border-box;
-  color: #1a1414a6;
+  color: black;
   border-top: none;
   width: 200px;
-  padding: 10px;
+  padding: 20px;
   font-size: 50px;
 }
 
 button {
   background: content-box;
   color: #131010a6;
-  border: none;
+  border: 20px;
 }

@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import foodReducer from "./redux/reducers/foodReducer";
+import todoReducer from "./redux/reducers/todoReducer";
 
 const rootReducer = combineReducers({
-  food: foodReducer,
+  todo: todoReducer,
 });
 
 const store = createStore(

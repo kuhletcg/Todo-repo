@@ -1,22 +1,22 @@
 import { useState } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addNumber, addFood, deleteFood } from "./redux/actions/food";
+import { addNumber, addTodo, deleteTodo } from "./redux/actions/todo";
 
 function App() {
-  const foodList = useSelector((state) => state.food.foodList);
-  console.log("foodlist", foodList);
+  const todoList = useSelector((state) => state.todo.todoList);
+  console.log("todolist", todoList);
   const dispatch = useDispatch();
-  const [food, setFood] = useState("");
+  const [todo, setTodo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addFood(food));
-    setFood("");
+    dispatch(addTodo(todo));
+    setTodo("");
   };
 
   const handleDelete = (key) => {
-    return foodList.filter((list) => list.key !== key);
+    return todoList.filter((list) => list.key !== key);
   };
 
   return (
@@ -26,26 +26,25 @@ function App() {
         <div>
           <input
             type="todoapp"
-            onChange={(e) => setFood(e.target.value)}
+            onChange={(e) => setTodo(e.target.value)}
             placeholder=""
-            value={food}
+            value={todo}
           />
           <input type="button" value="Submit" onClick={handleSubmit} />
-          {/* <input type="button" value="Delete" onClick={handleDelete} /> */}
         </div>
       </form>
-      {foodList &&
-        foodList.map((food) => {
+      {todoList &&
+        todoList.map((todo) => {
           return (
-            <div key={food.key}>
+            <div key={todo.key}>
               <h2>
                 <button
-                  onClick={() => dispatch(deleteFood(handleDelete(food.key)))}
+                  onClick={() => dispatch(deleteTodo(handleDelete(Todo.key)))}
                 >
                   delete
                 </button>
               </h2>
-              <h1>{food.name}</h1>
+              <h1>{todo.name}</h1>
             </div>
           );
         })}
